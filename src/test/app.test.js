@@ -50,6 +50,36 @@ test('Проверка Team addAll Bowman', () => {
   expect(received).toEqual(expected);
 });
 
+test('Проверка множественное добавление с повторениями', () => {
+  const bowman1 = new Bowman('Лучник', 'Bowman');
+  const bowman2 = new Bowman('Лучник', 'Bowman');
+  const team = new Team();
+  team.addAll(bowman1, bowman2, bowman1, bowman2, bowman1);
+  const received = team.toArray();
+  const expected = [{
+    name: 'Лучник',
+    type: 'Bowman',
+    _health: 100,
+    level: 1,
+    _attack: 25,
+    _defence: 25,
+    _powerMod: false,
+    onPowerMod: false,
+  },
+  {
+    name: 'Лучник',
+    type: 'Bowman',
+    _health: 100,
+    level: 1,
+    _attack: 25,
+    _defence: 25,
+    _powerMod: false,
+    onPowerMod: false,
+  }];
+
+  expect(received).toEqual(expected);
+});
+
 test('Проверка Team add Bowman повторно дубль', () => {
   const bowman = new Bowman('Лучник', 'Bowman');
   const team = new Team();
